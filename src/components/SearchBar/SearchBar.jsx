@@ -1,12 +1,15 @@
 import toast from 'react-hot-toast';
+import css from './SearchBar.module.css'
 
 export const SearchBar = ({onSearch}) => {
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if (e.target.elements.searchQuery.value.trim() === '') {
       toast.error('Query field can`t be empty.')
       return
     }
+    
     onSearch(e.target.elements.searchQuery.value)
     e.target.reset();
  }
@@ -21,7 +24,7 @@ export const SearchBar = ({onSearch}) => {
           autoFocus
           placeholder="Search images and photos"
         />
-        <button type="submit">Search</button>
+        <button className={css.search_btn} type="submit">Search</button>
       </form>
     </header>
   )

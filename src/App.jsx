@@ -13,9 +13,10 @@ import { LoadMoreBtn } from './components/LoadMoreBtn/LoadMoreBtn';
 const App = () => {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1)
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
+  const [showBtn, setShowBtn] = useState(false);
 
   const searchImages = async (newQuery) => {
     setQuery(newQuery);
@@ -45,6 +46,8 @@ const App = () => {
         const response = await axios(`${BASE_URL}/search/photos?client_id=${CLIENT_ID}&page=${page}&query=${query}`);
         setImages(prevImages => [...prevImages, ...response.data.results]);
       
+        setShowBtn(response.data.total_pages !== page)
+
       } catch (error) {
         setError(true)
       } finally {
@@ -61,12 +64,11 @@ const App = () => {
       {loading && <FallingLines />}
       {error && <ErrorMessage/>}
       {images.length > 0 && <ImageGallery items={images} />}
-      {images.length > 0 && <LoadMoreBtn onLoadMore={ handleLoadMore} />}
-
-      
-
+      {images.length > 0 && showBtn && <LoadMoreBtn
+        onLoadMore={handleLoadMore} />}
+    
       <Toaster
-      position="top-right"/>
+      position="top-center"/>
     </div>
   );
 };

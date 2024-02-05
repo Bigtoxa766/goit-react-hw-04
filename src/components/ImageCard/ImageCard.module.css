@@ -1,0 +1,7 @@
+.img{
+  display: block;
+}
+
+.modalImg{
+  object-fit: contain;
+}

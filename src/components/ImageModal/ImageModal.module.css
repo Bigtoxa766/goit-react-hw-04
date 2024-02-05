@@ -1,6 +1,11 @@
 
+.modal_closeBtn{
+  position: absolute;
+  right: 1%;
+  background-color: transparent;
+}
 
-.modal_window{
-  width: 300px;
-
+.close_icon{
+  height: 25px;
+  width: 25px;
 }

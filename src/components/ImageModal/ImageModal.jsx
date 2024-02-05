@@ -1,5 +1,6 @@
 import Modal from 'react-modal';
-// import css from './ImageModal.module.css'
+import css from './ImageModal.module.css'
+import { CgCloseO } from "react-icons/cg";
 
 const customStyles = {
   content: {
@@ -9,9 +10,9 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+   
   },
 };
-
 Modal.setAppElement('#root');
 
 export const ImageModal = ({isOpen, onClose, children}) => {
@@ -22,7 +23,7 @@ export const ImageModal = ({isOpen, onClose, children}) => {
         onRequestClose={onClose}
         style={customStyles}
     >
-      <button onClick={()=>onClose()}>close</button>
+      <button className={css.modal_closeBtn} onClick={() => onClose()}><CgCloseO className={css.close_icon } /></button>
        {children}
       </Modal>
   );
